@@ -1,0 +1,162 @@
+{
+	"_type": "Project",
+	"_id": "AAAAAAFF+h6SjaM2Hec=",
+	"name": "CS321-03 Project",
+	"ownedElements": [
+		{
+			"_type": "UMLModel",
+			"_id": "AAAAAAFF+qBWK6M3Z8Y=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Model",
+			"ownedElements": [
+				{
+					"_type": "UMLClassDiagram",
+					"_id": "AAAAAAFF+qBtyKM79qY=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "Main",
+					"defaultDiagram": true
+				},
+				{
+					"_type": "UMLClass",
+					"_id": "AAAAAAF3h12nugtqnKg=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "Recipe",
+					"attributes": [
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF3h14PMgtueyk=",
+							"_parent": {
+								"$ref": "AAAAAAF3h12nugtqnKg="
+							},
+							"name": "name",
+							"visibility": "private",
+							"type": "String"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF3h15yCgt116Q=",
+							"_parent": {
+								"$ref": "AAAAAAF3h12nugtqnKg="
+							},
+							"name": "totalCost",
+							"visibility": "private",
+							"type": "double",
+							"defaultValue": "0.0"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF3h2ArNAvrU1s=",
+							"_parent": {
+								"$ref": "AAAAAAF3h12nugtqnKg="
+							},
+							"name": "allIngredientsAvailable",
+							"visibility": "private",
+							"type": "boolean",
+							"defaultValue": "null"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF3h2EEhAv2iiI=",
+							"_parent": {
+								"$ref": "AAAAAAF3h12nugtqnKg="
+							},
+							"name": "itemsUsed",
+							"type": "IngredientItem",
+							"multiplicity": "0..*"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF3h2F7Zwv/Pgw=",
+							"_parent": {
+								"$ref": "AAAAAAF3h12nugtqnKg="
+							},
+							"name": "directions",
+							"visibility": "private",
+							"type": "String"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF3h2HR4AwHNuw=",
+							"_parent": {
+								"$ref": "AAAAAAF3h12nugtqnKg="
+							},
+							"name": "lastUsedDate",
+							"visibility": "private",
+							"type": "Date"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF3h2JAkgwR8OE=",
+							"_parent": {
+								"$ref": "AAAAAAF3h12nugtqnKg="
+							},
+							"name": "recipeItems",
+							"visibility": "private",
+							"type": "RecipeItem",
+							"multiplicity": "0..*"
+						}
+					]
+				},
+				{
+					"_type": "UMLClass",
+					"_id": "AAAAAAF3h2OnDwwgyCY=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "IngredientItem",
+					"attributes": [
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF3h2RJEAxDbOM=",
+							"_parent": {
+								"$ref": "AAAAAAF3h2OnDwwgyCY="
+							},
+							"name": "name",
+							"visibility": "private",
+							"type": "String",
+							"multiplicity": "1"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF3h2TciwxLFCk=",
+							"_parent": {
+								"$ref": "AAAAAAF3h2OnDwwgyCY="
+							},
+							"name": "type",
+							"stereotype": "",
+							"visibility": "private",
+							"type": "String"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF3h2epKA0JIp4=",
+							"_parent": {
+								"$ref": "AAAAAAF3h2OnDwwgyCY="
+							},
+							"name": "quantityOnHand",
+							"visibility": "private",
+							"type": ""
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAF3h2gdEg0PYPc=",
+							"_parent": {
+								"$ref": "AAAAAAF3h2OnDwwgyCY="
+							},
+							"name": "measurementUnit",
+							"visibility": "private",
+							"type": "String"
+						}
+					]
+				}
+			]
+		}
+	],
+	"author": "cody bracewell"
+}
