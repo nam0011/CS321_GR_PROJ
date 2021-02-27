@@ -32,6 +32,22 @@ public class IngredientItem {
         return temp;
     }
 
+    /**
+     * Method to convert ingredient to string. This way it is uniform for reading and writing to the file.
+     * @return
+     */
+    @Override
+    public String toString() {
+        return "IngredientItem{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", measurementUnit='" + measurementUnit + '\'' +
+                ", cost=" + cost +
+                ", weight=" + weight +
+                ", quantityOnHand=" + quantityOnHand +
+                ", lastUsedDate=" + lastUsedDate +
+                '}';
+    }
 //****Decrease and Increase Weight and Quantity On Hand Methods*******/
 
     /**
@@ -69,6 +85,16 @@ public class IngredientItem {
 
 
 //****Constructors, Getters, and Setters Below************************/
+   public IngredientItem(IngredientItem item){
+        this.setName(item.getName());
+        this.setMeasurementUnit(item.getMeasurementUnit());
+        this.setWeight(item.getWeight());
+        this.setQuantityOnHand(item.getQuantityOnHand());
+        this.setType(item.getType());
+        this.setCost(item.getCost());
+        this.setLastUsedDate(item.getLastUsedDate());
+   }
+
     /**
      * Constructor with no parameters
      */
