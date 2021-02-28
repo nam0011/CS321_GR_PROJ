@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -11,20 +12,24 @@ public class IngredientDictionary {
         this.ingredientItemLinkedList = ingredientItemLinkedList;
     }
 
+    public LinkedList<IngredientItem> getIngredientItemLinkedList() {
+        return ingredientItemLinkedList;
+    }
+
     /**
      * Method allows you to get a single Ingredient Item referenced by name
      * @param ingredientName    Name of the Ingredient Item to returned
      * @return  Returns Ingredient Item Extracted from the Linked List
      */
     public IngredientItem getIngredientItem(String ingredientName){
-        ListIterator<IngredientItem> ingredientItemListIterator = this.ingredientItemLinkedList.listIterator(0);
-        IngredientItem tempItem = null;
-        while(ingredientItemListIterator.hasNext()){
-            if(ingredientItemListIterator.next().getName().equals(ingredientName)){
-                tempItem = new IngredientItem(ingredientItemListIterator.next());
+
+        IngredientItem tempIngredientItem = null;
+        for(int i = 0; i < this.ingredientItemLinkedList.size(); i++){
+            if(this.ingredientItemLinkedList.get(i).getName().equals(ingredientName)){
+                tempIngredientItem = new IngredientItem(this.ingredientItemLinkedList.get(i));
             }
         }
-        return tempItem;
+        return tempIngredientItem;
     }
 
     /**
@@ -33,15 +38,14 @@ public class IngredientDictionary {
      * @return  Boolean Value to be returned to verify the operation succeeded.
      */
     public boolean isIngredient(IngredientItem ingredientItem){
-        ListIterator<IngredientItem> ingredientItemListIterator = this.ingredientItemLinkedList.listIterator(0);
         boolean isIngredient = false;
-        while(ingredientItemListIterator.hasNext()){
-            if(ingredientItemListIterator.next().getName().equals(ingredientItem.getName())){
+        for(int i = 0; i < this.ingredientItemLinkedList.size(); i++){
+            if(this.ingredientItemLinkedList.get(i).getName().equals(ingredientItem.getName())){
                 System.out.println("Found Ingredient");
                 isIngredient = true;
             }
         }
-        if(isIngredient == false) System.out.println("No Ingredient Found You Need to Add to List");
+        if(isIngredient == false) System.out.println("No Ingredient Found");
 
         return isIngredient;
     }
@@ -54,6 +58,7 @@ public class IngredientDictionary {
      */
     public boolean addIngredientToList(IngredientItem ingredientItem){
         boolean alreadyExists = isIngredient(ingredientItem);
+        if(alreadyExists == true) System.out.println("For Add Ingredient");
 
         if(alreadyExists == false){
             this.ingredientItemLinkedList.add(ingredientItem);
@@ -70,67 +75,92 @@ public class IngredientDictionary {
      * @param ingredientItem    The ingredient Item to be removed from the list.
      * @return  Boolean Value to be returned to verify the operation succeeded.
      */
-    public boolean removeIngredientFromList(IngredientItem ingredientItem){
+    public void removeIngredientFromList(IngredientItem ingredientItem){
         boolean exists = isIngredient(ingredientItem);
 
-        if(exists == true){
-            this.ingredientItemLinkedList.remove(ingredientItem);
-            return true;
-        }else {
-            System.out.println("Ingredient Does NOT Exist Check for Add Method");
-            return false;
+        if(exists == true) {
+            for (int i = 0; i < this.ingredientItemLinkedList.size(); i++) {
+                if (this.ingredientItemLinkedList.get(i).getName().equals(ingredientItem.getName())) {
+                    this.ingredientItemLinkedList.remove(i);
+                    System.out.println("Ingredient Should have Been Removed");
+                }
+            }
         }
+    }
+
+    private int getIngredientItemIndex(IngredientItem ingredientItem){
+        int index = -1;
+        for(int i = 0; i < this.ingredientItemLinkedList.size(); i++){
+            if(this.ingredientItemLinkedList.get(i).getName().equals(ingredientItem.getName())){
+                index = i;
+            }
+        }
+        return index;
     }
 
     /**
      * Method to Update a Single Ingredient Item that exists in the list.
+     * UPDATES BY REPLACING THE SAME INGREDIENT IN THE LIST WITH A NEW VERSION OF THE ITEM
      * @param updateItem    The Ingredient Item to be updated
      * @return  Boolean Value to be returned to verify the operation succeeded.
      */
     public boolean updateIngredientInList(IngredientItem updateItem){
+        //TODO METHOD FAILING TO FIND INGREDIENT AFTER INGREDIENT SET =
         boolean isIngredient = isIngredient(updateItem);
-        boolean completedUpdate = false;
-        if(isIngredient == true){
-            ListIterator<IngredientItem> ingredientItemListIterator = this.ingredientItemLinkedList.listIterator(0);
+        if(isIngredient == false)System.out.println("For Update Ingredient");
 
-            while(ingredientItemListIterator.hasNext()){
-                if(ingredientItemListIterator.next().getName().equals(updateItem.getName())){
-                    if(ingredientItemListIterator.next().getQuantityOnHand() != updateItem.getQuantityOnHand()){
-                        //TODO add method for Logging Changes
-                        updateItem.setQuantityOnHand(ingredientItemListIterator.next().getQuantityOnHand());
-                    }
-                    if(ingredientItemListIterator.next().getCost() != updateItem.getCost()){
-                        //TODO add method for Logging Changes
-                        updateItem.setCost(ingredientItemListIterator.next().getCost());
-                    }
-                    if(ingredientItemListIterator.next().getWeight() != updateItem.getWeight()){
-                        //TODO add method for Logging Changes
-                        updateItem.setWeight(ingredientItemListIterator.next().getWeight());
-                    }
-                    if(ingredientItemListIterator.next().getLastUsedDate() != updateItem.getLastUsedDate()){
-                        //TODO add method for Logging Changes
-                        updateItem.setLastUsedDate(ingredientItemListIterator.next().getLastUsedDate());
-                    }
-                    if(ingredientItemListIterator.next().getMeasurementUnit() != updateItem.getMeasurementUnit()){
-                        //TODO add method for Logging Changes
-                        updateItem.setMeasurementUnit(ingredientItemListIterator.next().getMeasurementUnit());
-                    }
-                    if(ingredientItemListIterator.next().getType() != updateItem.getType()){
-                        //TODO add method for Logging Changes
-                        updateItem.setType(ingredientItemListIterator.next().getType());
-                    }
+        int index = getIngredientItemIndex(updateItem);
+        if(index >= 0) {
+            this.ingredientItemLinkedList.set(index, updateItem);
+            return true;
+        }else{
+            System.out.println("WHAT THE FUCK!!!");
+            return false;
+        }
+
+/*        boolean completedUpdate = false;
+        if(isIngredient == true){
+            for(int i = 0; i < this.ingredientItemLinkedList.size();i++){
+
+                IngredientItem tempItem = new IngredientItem(this.ingredientItemLinkedList.get(i));
+                int count = 0;
+                //TODO Method to add TempItem to some sort of Update Log
+
+
+                if(tempItem.getName().equals(updateItem.getName())){
+                    this.ingredientItemLinkedList.set(i,updateItem);
+                    System.out.println("Updated Item");
                     completedUpdate = true;
-                    break;
-                }else{
-                    System.out.println("Something Wrong, Item Found then The Names did not match???");
-                    completedUpdate = false;
-                    break;
                 }
             }
         }
         if(completedUpdate == false){
             System.out.println("Something Wrong, No Ingredient Updated.");
         }
-        return completedUpdate;
+        return completedUpdate;*/
+
+    }
+
+    /**
+     * Method convert Ingredient Linked List to an Array List of String Printouts
+     * @return
+     */
+    public ArrayList<String> convertToStringArrayList(){
+        ArrayList<String> stringArrayList = new ArrayList<>();
+        for(int i = 0; i < this.ingredientItemLinkedList.size(); i++){
+            stringArrayList.add(this.ingredientItemLinkedList.get(i).toString());
+            System.out.println("Object Added to String Array List Successful");
+        }
+        return stringArrayList;
+    }
+
+    /**
+     * Method for Testing, Prints out all Items in the Ingredient Item Linked List
+     */
+    public void printDictionary(){
+        ListIterator<IngredientItem> itr = this.ingredientItemLinkedList.listIterator(0);
+        while(itr.hasNext()){
+            System.out.println(itr.next().toString());
+        }
     }
 }

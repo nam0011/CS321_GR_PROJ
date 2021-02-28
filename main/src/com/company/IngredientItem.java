@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Date;
  * CS321-03
  * Ingredient Item Object Class
  */
-public class IngredientItem {
+public class IngredientItem implements Cloneable{
 
     //Private Variables
     private String name = "";   //What the Ingredient Item is called
@@ -18,18 +19,9 @@ public class IngredientItem {
     private double quantityOnHand = 0.0;    //Current stock of Ingredient.
     private Date lastUsedDate = null;
 
-    /**
-     * Method to create a string that has the format of the file and the data to store
-     * @return the ingredient as a string
-     */
-    public String ingredientToString(){
-        String temp  = ("{\"name\" : \"" + this.getName() + "\", \"type\" : \"" +
-                this.getType() + "\", \"cost\" : \"" +
-                this.getCost() + "\", \"weight\" : \"" +
-                this.getWeight() + "\", \"onHand\" : \"" +
-                this.getQuantityOnHand() + "\"},\n");
 
-        return temp;
+    public IngredientItem clone() throws CloneNotSupportedException {
+        return (IngredientItem) super.clone();
     }
 
     /**
@@ -85,21 +77,36 @@ public class IngredientItem {
 
 
 //****Constructors, Getters, and Setters Below************************/
-   public IngredientItem(IngredientItem item){
-        this.setName(item.getName());
-        this.setMeasurementUnit(item.getMeasurementUnit());
-        this.setWeight(item.getWeight());
-        this.setQuantityOnHand(item.getQuantityOnHand());
-        this.setType(item.getType());
-        this.setCost(item.getCost());
-        this.setLastUsedDate(item.getLastUsedDate());
-   }
 
     /**
      * Constructor with no parameters
      */
     public IngredientItem(){
 
+    }
+
+    public IngredientItem(IngredientItem item) {
+        this.setName(item.getName());
+        this.setType(item.getType());
+        this.setCost(item.getCost());
+        this.setWeight(item.getWeight());
+        this.setMeasurementUnit(item.getMeasurementUnit());
+        this.setQuantityOnHand(item.getQuantityOnHand());
+        this.setLastUsedDate(item.getLastUsedDate());
+    }
+
+    public IngredientItem(ArrayList<String> list){
+        for(int i = 0; i < list.size(); i++){
+            if(list.get(0).equals("IngredientItem")) {
+                this.setName(list.get(2));
+                this.setType(list.get(4));
+                this.setMeasurementUnit(list.get(6));
+                this.setCost(Double.parseDouble(list.get(8)));
+                this.setWeight(Double.parseDouble(list.get(10)));
+                this.setQuantityOnHand(Double.parseDouble(list.get(12)));
+                //this.setLastUsedDate(list.get(14));
+            }
+        }
     }
 
     /**

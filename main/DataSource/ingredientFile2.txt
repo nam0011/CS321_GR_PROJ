@@ -1,0 +1,7 @@
+IngredientItem{name='Test Ingredient 1', type='Dry', measurementUnit='LB', cost=5.54, weight=45.0, quantityOnHand=5.0, lastUsedDate=null}
+IngredientItem{name='Test Ingredient 2', type='Dry', measurementUnit='LB', cost=5.54, weight=42.0, quantityOnHand=865.0, lastUsedDate=null}
+IngredientItem{name='Test Ingredient 3', type='Wet', measurementUnit='LB', cost=5.54, weight=4.0, quantityOnHand=54.0, lastUsedDate=null}
+IngredientItem{name='Test Ingredient 4', type='Dry', measurementUnit='OZ', cost=5.54, weight=45.0, quantityOnHand=542.0, lastUsedDate=null}
+IngredientItem{name='Test Ingredient 6', type='Wet', measurementUnit='LB', cost=5.54, weight=45.0, quantityOnHand=78.0, lastUsedDate=null}
+IngredientItem{name='Test Ingredient 7', type='Dry', measurementUnit='LB', cost=5.54, weight=37.0, quantityOnHand=45.0, lastUsedDate=null}
+IngredientItem{name='New Item Test', type='Wet', measurementUnit='lb', cost=57.0, weight=0.02, quantityOnHand=45.5, lastUsedDate=null}
